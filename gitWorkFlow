@@ -1,0 +1,12 @@
+1. Issues are created in github.
+2. With the issue's name create a branch: git branch issue-name
+3. Is you are in master, to switch to branch: git checkout issue-name
+4. When you finish the modifications in your repo according to the issue:
+	git add .
+	git commit -m 'mesagge related to the issue'
+5. Then push the branch to origin: git push origin issue-name
+6. Go to github and merge the issue branch. Also, close the issue.
+7. To update your local repo:
+	git checkout master
+	git pull origin master
+
