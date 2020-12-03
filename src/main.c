@@ -23,11 +23,15 @@ int main(int argc, char *argv[])
 
 	
 	/* Reading CSV file */ 
+	#if CLOCKT
 	t = clock();
+	#endif
 	csvd *data = readCSVFile(&tsf);
+	#if CLOCKT
 	t = clock()-t;
 	time_taken = ((double)t)/CLOCKS_PER_SEC;
 	printf("Time for reading CVS = %f\n", time_taken);
+	#endif
 
 	/* Write BIN file */
 	tsfb.dirname = argv[1];
@@ -36,13 +40,18 @@ int main(int argc, char *argv[])
 	if (writeCsv2Bin(&tsfb, data)) 
 		return -1;
 
+	#if READBIN
 	/* Read BIN file */
+	#if CLOCKT
 	t = clock();
+	#endif
 	readBINFile(&tsfb);
+	#if CLOCKT
 	t = clock()-t;
 	time_taken = ((double)t)/CLOCKS_PER_SEC;
 	printf("Time for reading BIN = %f\n", time_taken);
-
+	#endif
+	#endif
 
 	/* Freeing heap memory */
 	//freeMemCSV(&ts);

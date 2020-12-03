@@ -171,7 +171,7 @@ int readBINFile(tfile *tsf){
 			break;
 
 		// Print each element of the object
-    	//printf("%d-%d-%d, %f\n", rowcsv.year, rowcsv.month, rowcsv.day, rowcsv.var);
+    	printf("%d, %d, %d, %f\n", rowcsv.year, rowcsv.month, rowcsv.day, rowcsv.var);
 		i++;
 	}
 
@@ -180,30 +180,4 @@ int readBINFile(tfile *tsf){
     return 0;
 }
 
-/*
-Allocate heap memory of an struct tserie
-*/
-void allocMemCSV(csvd2 *ts, int n){
-	ts->n = n;
-	ts->year = (int *)malloc(n * sizeof(int));
-	ts->month= (int *)malloc(n * sizeof(int));
-	ts->day = (int *)malloc(n * sizeof(int));
-	ts->var = (float *)malloc(n * sizeof(float));
-	//ts->var_symbol = (char *)malloc(ts->n * sizeof(char));
-	//for (int i = 0; i < ts->n; i++)
-	//	ts->var_symbol[i] = malloc(5 * sizeof(char));
-}
-
-/*
-Free heap memory taken by tserie struct
-*/
-void freeMemCSV(csvd2 *ts){
-	free(ts->year);
-	free(ts->month);
-	free(ts->day);
-	free(ts->var);
-	//for (int i = 0; i < ts->n; i++){
-	//	free(ts->var_symbol[i]);
-	//}	
-}
 

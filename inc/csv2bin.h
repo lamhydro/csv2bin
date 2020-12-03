@@ -9,18 +9,14 @@
 
 #define MAXCHAR 1000
 
+#define READBIN 0
+#define CLOCKT 0
+
 typedef struct typicalFile{
 	char *dirname;
 	char *filename;
 	int nrows; 
 } tfile;
-
-typedef struct csvData2{
-	unsigned n;
-	int *year, *month, *day;
-	float *var;
-	//char **var_symbol;
-} csvd2;
 
 typedef struct csvData{
 	int year, month, day;
