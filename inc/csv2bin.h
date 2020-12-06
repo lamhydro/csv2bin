@@ -8,9 +8,14 @@
 #include <stdbool.h>
 
 #define MAXCHAR 1000
+#define NHEADER 1
+#define NAN (0.0/0.0)
 
-#define READBIN 0
+#define READBIN 1
 #define CLOCKT 0
+
+char *header[NHEADER];
+int lheader[NHEADER];
 
 typedef struct typicalFile{
 	char *dirname;
@@ -21,6 +26,7 @@ typedef struct typicalFile{
 typedef struct csvData{
 	int year, month, day;
 	float var;
+	char var_symbol[5];
 } csvd;
 
 

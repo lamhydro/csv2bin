@@ -7,26 +7,28 @@
 int main(int argc, char *argv[])
 {
 
-	//csvd ts;
-	//char *filename;
+	/*csvd ts;
+	char *filename;*/
 	tfile tsf, tsfb;
 	clock_t t;
 	double time_taken;
+	csvd *data;
+	int i;
 
 	/* Assigning ext arg to variables */
 	if( argc != 4 ) {
       printf("Bad number of arguments supplied.\n");
 	  return -1;
 	}
-	tsf.dirname = argv[1]; //"/home/luis/Documents/cpp/HYDATsfana/dayUnregLongFLOWSandCatch/";
-	tsf.filename = argv[2]; //"01BJ001_DLY_FLOWS.csv";
+	tsf.dirname = argv[1]; 
+	tsf.filename = argv[2]; 
 
 	
 	/* Reading CSV file */ 
 	#if CLOCKT
 	t = clock();
 	#endif
-	csvd *data = readCSVFile(&tsf);
+	data = readCSVFile(&tsf);
 	#if CLOCKT
 	t = clock()-t;
 	time_taken = ((double)t)/CLOCKS_PER_SEC;
@@ -36,7 +38,7 @@ int main(int argc, char *argv[])
 	/* Write BIN file */
 	tsfb.dirname = argv[1];
 	tsfb.filename = argv[3];
-	tsfb.nrows = tsf.nrows-1;
+	tsfb.nrows = tsf.nrows-NHEADER;
 	if (writeCsv2Bin(&tsfb, data)) 
 		return -1;
 
@@ -54,8 +56,13 @@ int main(int argc, char *argv[])
 	#endif
 
 	/* Freeing heap memory */
-	//freeMemCSV(&ts);
+	/*freeMemCSV(&ts);*/
 	
+	/* Allocate header array */
+	for(i = 0; i < NHEADER; i++){
+		free(header[i]);
+	}
+
 	return 0;
 }
 

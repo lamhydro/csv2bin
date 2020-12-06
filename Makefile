@@ -1,5 +1,5 @@
 CC		= gcc
-CFLAGS = -O -Wall #-pg
+CFLAGS = -O -Wall -Wstrict-prototypes -ansi -pedantic -g #-pg
 TARGET = ./bin/csv2bin
 INCLS = -I./inc
 LIBS = -lm 
