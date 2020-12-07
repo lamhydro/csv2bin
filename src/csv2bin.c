@@ -216,4 +216,51 @@ int readBINFile(tfile *tsf){
     return 0;
 }
 
+int txtIntoBin(tfile *ftxt, tfile *fbin){
 
+	FILE *ftx, *fbi;
+	char line[MAXCHAR];
+	char *ftxname, *fbiname, *linebi;
+	int lline
+
+	/* Make up txt filename */
+	ftxname = (char *)malloc(strlen(ftxt->dirname) + strlen(ftxt->filename));
+	strcpy(ftxname, ftxt->dirname);
+	strcat(ftxname, ftxt->filename);
+
+	/* Make up bin filename */
+	fbiname = (char *)malloc(strlen(fbin->dirname) + strlen(fbin->filename));
+	strcpy(fbiname, fbin->dirname);
+	strcat(fbiname, fbin->filename);
+
+	/* Open txt file */
+	if ((ftx = fopen(ftxname,"r")) == NULL){
+		printf("Error opening %s txt file, stopping... \n", ftxname);
+		return -1;
+	}
+
+	/* Open bin file */
+	if ((fbi = fopen(fbiname,"wb")) == NULL){
+		printf("Error opening %s bin file, stopping... \n", fbiname);
+		return -1;
+	}
+
+	/* Read the txt file and write into bin */
+	while (fgets(line, MAXCHAR, ftx) != NULL){
+		
+		lline = strlen(line)-1;
+		linebi = (char *)malloc(lline * sizeof(char));
+		strcpy(linebi, line);
+		
+		fwrite(linebi, lline*sizeof(char), 1, fbi );
+
+		free(linebi);
+
+	}
+	
+    fclose(ftx);
+    fclose(fbi);
+	free(ftxname);
+	free(fbiname);
+
+}
