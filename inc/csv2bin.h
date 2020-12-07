@@ -12,7 +12,7 @@
 #define NAN (0.0/0.0)
 
 #define READBIN 1
-#define CLOCKT 0
+#define CLOCKT 1
 
 char *header[NHEADER];
 int lheader[NHEADER];

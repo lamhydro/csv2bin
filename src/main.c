@@ -22,8 +22,9 @@ int main(int argc, char *argv[])
 	}
 	tsf.dirname = argv[1]; 
 	tsf.filename = argv[2]; 
-
 	
+	printf("Converting %s into binary format\n", tsf.filename);
+
 	/* Reading CSV file */ 
 	#if CLOCKT
 	t = clock();

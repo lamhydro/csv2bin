@@ -186,7 +186,7 @@ int readBINFile(tfile *tsf){
 	for(i = 0; i < NHEADER; i++){
 		headerb = (char *)malloc(lheader[i]*sizeof(char));
     	fread(headerb, lheader[i]*sizeof(char), 1, fp);
-		printf("%s\n", headerb);
+		/*printf("%s\n", headerb);*/
 		free(headerb);
 	}
 
@@ -206,7 +206,7 @@ int readBINFile(tfile *tsf){
 			break;
 
 		/* Print each element of the object */
-    	printf("%d, %d, %d, %f, %s\n", rowcsv.year, rowcsv.month, rowcsv.day, rowcsv.var, rowcsv.var_symbol);
+    	/*printf("%d, %d, %d, %f, %s\n", rowcsv.year, rowcsv.month, rowcsv.day, rowcsv.var, rowcsv.var_symbol);*/
 		i++;
 	}
 
