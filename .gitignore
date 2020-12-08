@@ -1,4 +1,4 @@
 /src/*.o
 *.swp
 runme.sh
-/bin/*
+bin/csv2bin
