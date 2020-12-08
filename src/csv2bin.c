@@ -216,12 +216,15 @@ int readBINFile(tfile *tsf){
     return 0;
 }
 
+/*
+Function to save a txt file into binary format.
+*/
 int txtIntoBin(tfile *ftxt, tfile *fbin){
 
 	FILE *ftx, *fbi;
 	char line[MAXCHAR];
 	char *ftxname, *fbiname, *linebi;
-	int lline
+	int lline;
 
 	/* Make up txt filename */
 	ftxname = (char *)malloc(strlen(ftxt->dirname) + strlen(ftxt->filename));
@@ -248,7 +251,8 @@ int txtIntoBin(tfile *ftxt, tfile *fbin){
 	/* Read the txt file and write into bin */
 	while (fgets(line, MAXCHAR, ftx) != NULL){
 		
-		lline = strlen(line)-1;
+		lline = strlen(line);
+		printf("le = %d\n",lline);
 		linebi = (char *)malloc(lline * sizeof(char));
 		strcpy(linebi, line);
 		
@@ -261,6 +265,7 @@ int txtIntoBin(tfile *ftxt, tfile *fbin){
     fclose(ftx);
     fclose(fbi);
 	free(ftxname);
-	free(fbiname);
+	free(fbiname);	
 
+	return 0;
 }

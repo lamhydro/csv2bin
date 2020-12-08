@@ -50,4 +50,10 @@ Read and display bin file with tserie
 */
 int readBINFile(tfile *tsf);
 
+/*
+Function to save a txt file into binary format.
+*/
+int txtIntoBin(tfile *ftxt, tfile *fbin);
+
+
 #endif

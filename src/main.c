@@ -56,13 +56,15 @@ int main(int argc, char *argv[])
 	#endif
 	#endif
 
-	/* Freeing heap memory */
-	/*freeMemCSV(&ts);*/
 	
-	/* Allocate header array */
+	/* Free allocated array */
+	free(data);
 	for(i = 0; i < NHEADER; i++){
 		free(header[i]);
 	}
+	
+
+	txtIntoBin(&tsf, &tsfb);
 
 	return 0;
 }
