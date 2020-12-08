@@ -55,15 +55,13 @@ int main(int argc, char *argv[])
 	printf("Time for reading BIN = %f\n", time_taken);
 	#endif
 	#endif
-
-	/* Freeing heap memory */
-	/*freeMemCSV(&ts);*/
 	
-	/* Allocate header array */
+	/* Free allocated array */
+	free(data);
 	for(i = 0; i < NHEADER; i++){
 		free(header[i]);
 	}
-
+	
 	return 0;
 }
 
