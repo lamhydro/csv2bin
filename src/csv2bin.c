@@ -129,12 +129,12 @@ int writeCsv2Bin(tfile *tsf, csvd *data){
 	}
 	
 	/* Write header */
-	for(i = 0; i < NHEADER; i++){
+	/*for(i = 0; i < NHEADER; i++){*/
 		/*printf("%s", header[i]);*/
 		/*printf("here");*/
-		fwrite( header[i], lheader[i]*sizeof(char), 1, fp );
+		/*fwrite( header[i], lheader[i]*sizeof(char), 1, fp );*/
 		/*fwrite( str, sizeof(char), MAXCHAR, fp );*/
-	}
+	/*}*/
 
 	/* Write main table */
 	for(i = 0; i < tsf->nrows-NHEADER+1; i++){
@@ -183,12 +183,12 @@ int readBINFile(tfile *tsf){
 	}
 
 	/* Read header */
-	for(i = 0; i < NHEADER; i++){
-		headerb = (char *)malloc(lheader[i]*sizeof(char));
-    	fread(headerb, lheader[i]*sizeof(char), 1, fp);
+	/*for(i = 0; i < NHEADER; i++){*/
+		/*headerb = (char *)malloc(lheader[i]*sizeof(char));*/
+    	/*fread(headerb, lheader[i]*sizeof(char), 1, fp);*/
 		/*printf("%s\n", headerb);*/
-		free(headerb);
-	}
+		/*free(headerb);*/
+	/*}*/
 
 	/* Read main table */
 	i = 0;
