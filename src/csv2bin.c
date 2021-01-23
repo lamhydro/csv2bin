@@ -37,7 +37,10 @@ csvd *readCSVFile(tfile *tsf)
 	csvd *data;
 
 	/* Make up filename */
-	filename = malloc(strlen(tsf->dirname) + strlen(tsf->filename));
+	/*filename = malloc(strlen(tsf->dirname) + strlen(tsf->filename));*/
+	if ((filename = malloc(strlen(tsf->dirname) + strlen(tsf->filename) + 1)) == NULL){ /* +1 because of '\0' character */
+		exit(0);
+	}
 	strcpy(filename, tsf->dirname);
 	strcat(filename, tsf->filename);
 
@@ -60,8 +63,8 @@ csvd *readCSVFile(tfile *tsf)
 	for(i = 0; i < NHEADER; i++){
 		fgets(line, MAXCHAR, fp);
 		/*printf("len = %d\n", strlen(line));*/
-		lheader[i] = strlen(line)-1;
-		header[i] = (char *)malloc(lheader[i] * sizeof(char));
+		lheader[i] = strlen(line);
+		header[i] = malloc(lheader[i] + 1);
 		/*header[i] = (char *)malloc(MAXCHAR * sizeof(char));*/
 		strcpy(header[i], line);
 		/*printf("%s", header[i]);*/
@@ -118,7 +121,9 @@ int writeCsv2Bin(tfile *tsf, csvd *data){
 	double tdoub;*/
 
 	/* Make up filename */
-	filename = malloc(strlen(tsf->dirname) + strlen(tsf->filename));
+	if ((filename = malloc(strlen(tsf->dirname) + strlen(tsf->filename) + 1)) == NULL){
+		return -1;
+	}
 	strcpy(filename, tsf->dirname);
 	strcat(filename, tsf->filename);
 	
@@ -147,7 +152,7 @@ int writeCsv2Bin(tfile *tsf, csvd *data){
 		//fwrite( &tint, sizeof(int), 1, fp );
 		//tdoub = data[i].var;
 		fwrite( &tdoub, sizeof(double), 1, fp ); */
-		fwrite( &data[i], sizeof(csvd), 1, fp );
+		fwrite( &data[i], sizeof(csvd *), 1, fp );
 	}	
 
 	fclose(fp);
@@ -172,7 +177,9 @@ int readBINFile(tfile *tsf){
 	char *headerb;
 
 	/* Make up filename */
-	filename = malloc(strlen(tsf->dirname) + strlen(tsf->filename));
+	if ((filename = malloc(strlen(tsf->dirname) + strlen(tsf->filename)+1)) == NULL){
+		return -1;
+	}
 	strcpy(filename, tsf->dirname);
 	strcat(filename, tsf->filename);
 
@@ -183,7 +190,7 @@ int readBINFile(tfile *tsf){
 	}
 
 	/* Read header */
-	/*for(i = 0; i < NHEADER; i++){*/
+	/*for(i = 0; i < NHEADER; i++){
 		/*headerb = (char *)malloc(lheader[i]*sizeof(char));*/
     	/*fread(headerb, lheader[i]*sizeof(char), 1, fp);*/
 		/*printf("%s\n", headerb);*/
@@ -206,7 +213,7 @@ int readBINFile(tfile *tsf){
 			break;
 
 		/* Print each element of the object */
-    	/*printf("%d, %d, %d, %f, %s\n", rowcsv.year, rowcsv.month, rowcsv.day, rowcsv.var, rowcsv.var_symbol);*/
+    	printf("%d, %d, %d, %f, %s\n", rowcsv.year, rowcsv.month, rowcsv.day, rowcsv.var, rowcsv.var_symbol);
 		i++;
 	}
 
