@@ -53,7 +53,8 @@ csvd *readCSVFile(tfile *tsf)
 		exit(1);
 	}
 	
-	data = (csvd *)malloc((tsf->nrows-NHEADER) * sizeof(csvd));
+	/*data = (csvd *)malloc((tsf->nrows-NHEADER) * sizeof(csvd));*/
+	data = calloc(tsf->nrows-NHEADER, sizeof(csvd));
 
 	/* Allocate header array 
 	for(i = 0; i < NHEADER; i++){
@@ -95,8 +96,8 @@ csvd *readCSVFile(tfile *tsf)
 		strcpy(data[i].var_symbol, token);
 		token = strtok(NULL,",");
 
-		/*printf("%d,%d,%d,%g,%s\n", data[i].year, data[i].month, data[i].day, data[i].var, data[i].var_symbol);
-		printf("%d,%d,%d,%g\n", ts->year[i], ts->month[i], ts->day[i], ts->var[i]);*/
+		printf("%d,%d,%d,%g,%s\n", data[i].year, data[i].month, data[i].day, data[i].var, data[i].var_symbol);
+		/*printf("%d,%d,%d,%g\n", ts->year[i], ts->month[i], ts->day[i], ts->var[i]);*/
 	
 		/*if (i == 80){
 			break;
@@ -152,7 +153,7 @@ int writeCsv2Bin(tfile *tsf, csvd *data){
 		//fwrite( &tint, sizeof(int), 1, fp );
 		//tdoub = data[i].var;
 		fwrite( &tdoub, sizeof(double), 1, fp ); */
-		fwrite( &data[i], sizeof(csvd *), 1, fp );
+		fwrite( &data[i], sizeof(csvd), 1, fp );
 	}	
 
 	fclose(fp);
