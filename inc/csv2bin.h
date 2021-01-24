@@ -26,7 +26,7 @@ typedef struct typicalFile{
 typedef struct csvData{
 	int year, month, day;
 	float var;
-	char var_symbol[10];
+	char var_symbol[5];
 } csvd;
 
 

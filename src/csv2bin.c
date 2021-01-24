@@ -53,8 +53,8 @@ csvd *readCSVFile(tfile *tsf)
 		exit(1);
 	}
 	
-	/*data = (csvd *)malloc((tsf->nrows-NHEADER) * sizeof(csvd));*/
-	data = calloc(tsf->nrows-NHEADER, sizeof(csvd));
+	data = (csvd *)malloc((tsf->nrows-NHEADER) * sizeof(csvd));
+	/*data = calloc(tsf->nrows-NHEADER, sizeof(csvd));*/
 
 	/* Allocate header array 
 	for(i = 0; i < NHEADER; i++){
